@@ -146,7 +146,7 @@ export function cached<F: Function> (fn: F): F {
   const cache = Object.create(null)
   return (function cachedFn (str: string) {
     const hit = cache[str]
-    return hit || (cache[str] = fn(str))
+    return hit !== undefined ? hit : (cache[str] = fn(str))
   }: any)
 }
 
